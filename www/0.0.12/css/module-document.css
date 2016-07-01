@@ -1,7 +1,17 @@
 #room .document {
-    background-color: #a8ef98;
+    height: 331px;
+    background-color: #1abc9c;
 }
-
+#room .books {
+    padding: 3px 5px;
+    display: block;
+    color: #fff;
+    background-color: #16a085;
+}
 #room .document ul li {
     cursor: pointer;
+}
+#room .document-content {
+    overflow: hidden;
+    overflow-y: scroll;
 }

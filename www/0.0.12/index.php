@@ -25,79 +25,8 @@
          *  L A Y O U T    : DON'T DESIGN HERE
          *
          */
-
-        #entrance { padding: 2em; }
-        #status { background-color: grey; }
-        #room { position: relative; background-color:#5f9ea0; }
-        #room .content { position: relative; }
-
-        #room .content .whiteboard { display: none; background-color: #e1e1e1; }
-
-        #room.has-whiteboard .whiteboard { display: block; }
-
-
-
-
-        /** White Board Design */
-        #room .content .whiteboard {
-            position: relative;
-            width: 100%;
-            height: 340px;
-            background-color: #AEBDCC;
-        }
-        #room .content .whiteboard nav {
-            position: absolute;
-            z-index: 500;
-            top: 4px;
-            right: 4px;
-        }
-        #room .content .whiteboard section { position: absolute; z-index: -50; top: 0; left: 0; right: 0; bottom: 0; }
-        #room .content .whiteboard canvas {
-            position:relative;
-            z-index: 200;
-            width:100%;
-            height: 100%;
-        }
-
-        /** Layout break point */
-        @media all and ( min-width: 546px ){
-            #room { background-color: #19469D; }
-            #room .videos {
-                position: absolute;
-                z-index: 100;
-            }
-            #room.has-whiteboard .content .videos {
-                position: relative;
-                margin: 0;
-            }
-
-            #room .content .whiteboard {
-                position: absolute;
-                z-index: 100;
-                top: 0;
-                right: 0;
-                width: auto;
-            }
-        }
-
-        #lobby .room-list {
-            margin: .4em 0;
-        }
-        #lobby .room-list .room {
-            margin: .1em 0;
-            padding: 1em;
-            background-color: #5f9ea0;
-            color: white;
-        }
-        #lobby .room-list .room .name {
-            display: block;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
     </style>
     <script>
-
 
         //
         var debugMode = 'call-center-desktop';
@@ -122,10 +51,11 @@
         var video_count = 0;
         function getScript(src) {
             document.write('<' + 'script src="' + src + '"' +
-                    ' type="text/javascript"><' + '/script>');
+                ' type="text/javascript"><' + '/script>');
         }
         var src = socketURL + '/socket.io/socket.io.js';
         getScript( src );
+
     </script>
 </head>
 <body>
@@ -133,72 +63,100 @@
 
     <header>
         <div class="caption">
-            Video Center v3 by Withcenter, Inc.
+            <span class="logo">LOGO</span>
+            <span class="logo-title">Video Center v3 by Withcenter, Inc.</span>
         </div>
         <nav class="header-menu">
             <div>
-                <a href="../index.html">Index HTML</a>
-                <a href="?">Lobby</a>,
-                <a href="?reload=10">Reload</a>
+                <a href="../index.html"><img src="img/home.png"><span>Home</span></img></a>
+                <a href="?"><img src="img/door.png"><span>Lobby</span></img></a>
+                <a href="?reload=10"><img src="img/refresh.png  "><span>Reload</span></img></a>
             </div>
         </nav>
-    </header>
+    </header><!-- #header -->
 
     <section id="entrance">
-        <form>
-            <input type="hidden" name="show_header" value="Y">
-            <input type="hidden" name="show_header_menu" value="Y">
-            <div class="caption">Please input username</div>
-            <div class="username">
-                <input name="username" placeholder="Input user name" size="10">
+        <div>
+            <div class="row">
+                <div class="col-sm-6 left">
+                    <form>
+                        <input type="hidden" name="show_header" value="Y">
+                        <input type="hidden" name="show_header_menu" value="Y">
+                        <!--div class="caption">Please input username</div-->
+                        <div class="username">
+                            <input name="username" placeholder="Input Username" size="10">
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="ENTER VIDEO CENTER">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-6 right">
+                    <div class="title">Video Center Guidelines</div>
+                    <div class="desc">
+                        <div>-Vivamus bibendum elit non mollis egestas.</div>
+                        <div>-Nam molestie, purus a malesuada</div>
+                        <div>-hendrerit, nulla odio congue magna, at</div>
+                        <div>-volutpat justo urna vel velit. Duis nunc</div>
+                        <div>-velit, commodo at risus nec, commodo</div>
+                        <div>-tincidunt diam. Nulla quis felis justo. Etiam</div>
+                        <div>-eleifend gravida orci, nec faucibus mauris</div>
+                        <div>-eget. Sed laoreet augue erat, vel volutpat</div>
+                        <div>-massa euismod et. Fusce eu sapien iaculis, s</div>
+                        <div>-celerisque tortor et, fermentum quam.</div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <input type="submit" value="Enter Video Center">
-            </div>
-        </form>
+        </div>
     </section><!-- #entrance -->
 
 
     <section id="lobby">
-        <h1>Lobby</h1>
-        <nav class="lobby-menu">
-            <button class="update-username" box="username">Update Username</button>
+        <div>
+            <div class="lobby-header">
+                <h1>Lobby</h1>
+                <nav class="lobby-menu">
+                    <button class="update-username" box="username">Update Username</button>
+                    <button class="create-room" box="join-room">Create Room</button>
+                    <button class="logout">Logout</button>
+                </nav>
 
-            <button class="logout">Logout</button>
-            <button class="create-room" box="join-room">Create Room</button>
-        </nav>
-        <div class="lobby-menu-content">
+                <div class="lobby-menu-content">
+                    <div class="box username">
+                        <form>
+                            <!--div class="caption">Username :</div-->
+                            <input name="username" placeholder="Input user name" size="10">
+                            <input type="submit" value="Update Username">
+                        </form>
+                    </div>
+                    <div class="box join-room">
+                        <form>
+                            <!--div class="caption">Input room name and submit the form to create a room.</div-->
+                            <input type="text" name="roomname" placeholder="Input room name to join">
+                            <input type="submit" value="Join Chat Room">
+                        </form>
+                    </div>
 
-            <div class="box username">
-                <form>
-                    <div class="caption">Username :</div>
-                    <div class="text"><input name="username" placeholder="Input user name" size="10"></div>
-                    <div class="button"><input type="submit" value="Update Username"></div>
-                </form>
+                </div>
+
+                <div class="room-list">
+                    Room List
+                    <div class="content"></div>
+                </div>
             </div>
-            <div class="box join-room">
-                <form>
-                    <div class="caption">Input room name and submit the form to create a room.</div>
-                    <input type="text" name="roomname" placeholder="Input room name to join">
-                    <div class="button"><input type="submit" value="Join Chat Room"></div>
-                </form>
-            </div>
+        </div>
+    </section><!-- #lobby -->
 
-        </div>
-        <div class="room-list">
-            Room List
-            <div class="content"></div>
-        </div>
-    </section>
+
     <section id="room" class="">
         <nav>
-            <button class="leave">Leave</button>
-            <button class="reconnect">Re-connect</button>
-            Display :
-            <button class="video-layout-list" onclick="videoLayout_list();">List</button>
-            <button class="video-layout-Metro" onclick="videoLayout_metro();">Metro</button>
-            <button class="video-layout-overlay" onclick="videoLayout_overlay();">Overlay</button>
-            <button class="button-whiteboard" onclick="whiteboard.toggle();">WhiteBoard</button>
+            <!--Display : -->
+            <button class="video-layout-list left" onclick="videoLayout_list();">List</button>
+            <button class="video-layout-Metro left" onclick="videoLayout_metro();">Metro</button>
+            <button class="video-layout-overlay left" onclick="videoLayout_overlay();">Overlay</button>
+            <button class="button-whiteboard left" onclick="whiteboard.toggle();">WhiteBoard</button>
+            <button class="leave right">Leave</button>
+            <button class="reconnect right">Re-connect</button>
         </nav>
         <div class="content">
             <div class="videos">
@@ -272,21 +230,21 @@
                 <canvas id="whiteboard-canvas"></canvas>
             </div>
         </div>
-    </section>
+    </section><!-- #room -->
 
-    <nav class="navbar navbar-fixed-bottom navbar-light bg-faded">
+    <!--nav class="navbar navbar-fixed-bottom navbar-light bg-faded">
         <a class="navbar-brand" href="#">Fixed bottom</a>
-    </nav>
+    </nav-->
     <footer>
-        <div class="copyright narrow navbar navbar-fixed-bottom navbar-light bg-faded">
+        <div class="copyright">
             Company Name: <%=company_name%>
         </div>
-        <div class="copyright wide navbar navbar-fixed-bottom navbar-light bg-faded">
+        <div class="copyright">
             Company Name: <%=company_name%> President : <%=ceo_name%><br>
             Phone: <%=phone_number%> Address: <%=address%><br>
             Copyright (C) 2013 ~ <%=Ymd%>
         </div>
-    </footer>
+    </footer><!-- #footer -->
 
 
 </script>
